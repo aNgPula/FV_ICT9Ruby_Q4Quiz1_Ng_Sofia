@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Q4Quiz1</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+body{
+	margin-top: 50px;
+	margin-bottom: 50px;
+	background-image: linear-gradient(royalblue, skyblue);
+	font-family: Yu Gothic;
+}
+
+#BMICal{
+	width:500px;
+		padding: 20px;
+		margin: auto;
+		background: rgba(255, 255, 255, 1);
+		box-shadow: 2px 3px 10px rgba(0,0,0, 0.8);
+}
+
+h1{
+	font-family: forte;
+}
+p{
+	color: royalblue;
+}
+
+#WeightKG{
+	background-image: linear-gradient(seagreen, lightgreen);
+}
+
+#HeightM{
+	background-image: linear-gradient(orange, yellow);
+}
+
+</style>
+</head>
+<body> 
+
+<br><br>
+
+<center>
+<div class="col-md-5" id="BMICal">
+	<h1><span style="color: deepskyblue;">Body</span> <span style="color: yellow;">Mass</span> <span style="color: orange;">Index</span> <span style="color: royalblue;">(BMI)</span> <span style="color: green;">Calculator</span></h1>
+	<br>
+	<p> The BMI Calculator is used for classifications to evaluate a person based on their weight and height using the units kilogram per squared meters or kg/m².</p>
+
+<img src="https://cdn-icons-png.flaticon.com/512/4349/4349072.png" style="width: 150px; height: 150px">
+	<span style="color: royalblue;"><details ontoggle="InsBMI()"><summary>Instructions !</summary>
+	<i id="InsBMI"></i>
+	<br><br>
+	<ol>
+		<li> Input your weight in Kilograms. </li>
+		<li> Input your height in Meters. </li>
+		<li> Press the button to calculate the BMI. </li>
+		<li> The output and classification will be put in the bottom</li>
+	</ol>
+	</details></span>
+	<br>
+
+	<input type="number" class="form-control" id="WeightKG">
+	<kbd id="WKG">Kilograms</kbd>
+	<br><br>
+
+	<input type="number" class="form-control" id="HeightM">
+	<kbd id="HM">Meters</kbd>
+	<br><br>
+
+	<button type="Submit" class="btn btn-info" onclick="CalcBMI()">Calculate my BMI !</button>
+	<br><br>
+	<kbd id="ClassPut">Classification & Output</kbd>
+	<br><br>
+
+</center>
+</div>
+
+<br><br>
+<center>
+<small> <a href="ICT9Q4Q1Sources.pdf"><span style="color: black;">Click for sources here </small></a></span>
+<br>
+<small> @ Sofia Ng 2025 </small>
+</center>
+
+<script>
+
+function InsBMI (){
+	document.getElementById("InsBMI").innerHTML = "Please follow all the steps one by one, thank you!";
+}
+
+// ^ Used for instructions to guide the user.
+
+function CalcBMI (){ // This function is used for the button to show the user their classification and BMI.
+
+var W = document.getElementById("WeightKG").value; //This var is used to get the value inputed for their weight in kg.
+var H = document.getElementById("HeightM").value; //This var is used to get the value inputed for their height in m.
+var Quot = W/(Math.pow(H,2)); //This var is used as the formula in order to get the BMI of the person.
+var Answer = Quot.toFixed(2); //This var is used to round off the answer to two decimal places only.
+
+if (Answer < 18.5) {
+	document.getElementById("ClassPut").innerHTML = "You are underweight with a BMI of " + Answer + " kg/m².";
+} //This condition is used under the condition that the answer the formula had given was under 18.5, this would then signify the user by changing the kbd "classification & Output" indicating they are underweight along with their BMI.
+
+else if (Answer >= 18.5 && Answer <= 24.9) {
+	document.getElementById("ClassPut").innerHTML = "You are normal weight with a BMI of " + Answer + " kg/m².";
+} //If the value of the answer after the formula did not satisfy the if condition (under 18.5), but satisfies this condition of value being in the range of 18.5-24.9, then this code would run instead, signifying the user that they are normal weight along with their BMI.
+
+else if (Answer >= 25 && Answer <= 29.9) {
+	document.getElementById("ClassPut").innerHTML = "You are overweight with a BMI of " + Answer + " kg/m².";
+} //If the value of the answer after the formula did not satisfy the first two conditions (under 18.5 and 18.5-24.9), but satifies this condition of the value vbeing 25-29.9, then this code would run instead, signifying the user that they are over weight along with their BMI.
+
+else{
+	document.getElementById("ClassPut").innerHTML = "You are obese with a BMI of " + Answer + " kg/m².";
+}//If all the given conditions of the if and else if are not satisfied with the value after the formula, then this code will run, signifying to the user that they are obese along with their BMI.
+
+}
+
+</script>
+</body>
